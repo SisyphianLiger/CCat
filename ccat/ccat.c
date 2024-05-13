@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include "string_comp.h"
+#include <stdlib.h>
+#include "helpfnc/string_comp.h"
 
 
 int main(int argc, char *argv[]) {
@@ -9,7 +10,9 @@ int main(int argc, char *argv[]) {
         // Checking if there is a flag the next vector is less than argc
         if (str_cmp(argv[i], "-p")) {
             if (argc > i + 1) {
-                printf("Connecting to port %s...\n", argv[i + 1]);
+                char * output = remove_dash_str(argv[i + 1]);
+                printf("Connecting to port %s...\n", output);
+                free(output);
             }
             else {
                 fprintf(stderr, "Error: -p flag requires a string argument.\n");
